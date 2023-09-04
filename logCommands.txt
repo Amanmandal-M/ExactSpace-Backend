@@ -1,0 +1,17 @@
+# Finding all log files in the system
+find / -type f -name "*.log"
+
+# Finding the size of all log files
+find / -type f -name "*.log" -exec du -h {} \;
+
+# Finding the largest log file and subdirectories
+find ~/ -type f -name "*.log" -exec du -h {} \; | sort -rh | head -n 1
+
+# Navigate to the log file directory
+cd /c/Path/To/Your/Log/File/Directory  # Replace with the actual path
+
+# Open your log file
+start yourLogFile.log  # Replace with the actual log file name
+
+# Display the first 100 lines of the log file
+head -n 100 yourLogFile.log  # Replace with the actual log file name

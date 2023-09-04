@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Error Page</title>
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="https://th.bing.com/th/id/OIP.26ssXR7-eLVjn4_137c5XwHaHZ?pid=ImgDet&rs=1"
+      type="image/x-icon"
+    />
+
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <style>
+    body {
+      background-color: #292b2c;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .error-container {
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f1f1f1;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    h1 {
+      color: #dc3545;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
+  <body>
+    <div class="error-container">
+      <h1>Error</h1>
+      <p><%= status %>: <%= message %></p>
+    </div>
+    <script>
+      // Redirect the page back to the previous page after 4 seconds
+      setTimeout(() => {
+        // history.back();
+        window.location.href = "/";
+      }, 3000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JSON Submission Form</title>
+
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="https://th.bing.com/th/id/OIP.26ssXR7-eLVjn4_137c5XwHaHZ?pid=ImgDet&rs=1"
+      type="image/x-icon"
+    />
+
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #292b2c;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    form {
+      background-color: #373a3c;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 500px;
+      width: 100%;
+    }
+    textarea {
+      height: 200px;
+      width: 96%;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #d6d8db;
+      color: #292b2c;
+      font-size: 16px;
+      resize: vertical;
+    }
+    input[type="submit"] {
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #51c0fa;
+      color: white;
+      transition: background-color 0.3s ease-in-out;
+    }
+    input[type="submit"]:hover {
+      background-color: #389cdf;
+    }
+  </style>
+  <body>
+    <h1>JSON Submission Form</h1>
+    <form action="/submit" method="post">
+      <textarea
+        id="text"
+        name="json"
+        rows="6"
+        placeholder="Enter JSON data..."
+      ></textarea>
+      <br />
+      <input type="submit" value="Submit JSON" />
+    </form>
+  </body>
+  <script>
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", (e) => {
+      const textValue = document.getElementById("text").value.trim();
+
+      if (!textValue) {
+        e.preventDefault();
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Please enter data first',
+          width: '25%',
+          showConfirmButton: false, // Disable the OK button
+          timer: 1000, // Automatically close after 1000ms (1 second)
+        });
+      }
+    });
+  </script>
+</html>

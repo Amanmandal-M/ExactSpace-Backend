@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JSON Display Page</title>
+
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="https://th.bing.com/th/id/OIP.26ssXR7-eLVjn4_137c5XwHaHZ?pid=ImgDet&rs=1"
+      type="image/x-icon"
+    />
+
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #292b2c;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    #jsonInputs {
+      background-color: #373a3c;
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      width: 100%;
+    }
+    input[type="text"] {
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #d6d8db;
+      color: #292b2c;
+      width: 100%;
+    }
+  </style>
+  <body>
+    <h1>JSON Display Page</h1>
+
+    <div id="jsonInputs"></div>
+
+    <script>
+      const jsonDataString = `<%- JSON.stringify(json).replace(/\\/g, '\\\\').replace(/'/g, "\\'") %>`;
+      const jsonData = JSON.parse(jsonDataString); // Parse JSON data
+      const newObj = JSON.parse(jsonData);
+      const jsonInputsContainer = document.getElementById("jsonInputs");
+
+      // Loop through JSON properties and create input boxes
+      for (const key in newObj) {
+        if (newObj.hasOwnProperty(key)) {
+          const keyInput = document.createElement("input");
+          keyInput.type = "text";
+          keyInput.value = key;
+          keyInput.readOnly = true;
+
+          const valueInput = document.createElement("input");
+          valueInput.type = "text";
+          valueInput.value = newObj[key]; // Set the value from JSON
+
+          jsonInputsContainer.appendChild(keyInput);
+          jsonInputsContainer.appendChild(valueInput);
+          jsonInputsContainer.appendChild(document.createElement("br"));
+        }
+      }
+
+      // Check if JSON is empty and show SweetAlert message
+      if (Object.keys(newObj).length === 0) {
+        Swal.fire({
+          icon: "info",
+          title: "Hey!",
+          text: "Your JSON object is empty but this is valid JSON data.",
+          width: "25%",
+          timer: 4000,
+          showConfirmButton: false
+        });
+      }else{
+        Swal.fire({
+          icon: "success",
+          title: "Congratulations!",
+          text: "Your JSON object is not empty. This is valid JSON data.",
+          width: "30%",
+          timer: 2000,
+          showConfirmButton: false
+        });
+      }
+    </script>
+  </body>
+</html>
